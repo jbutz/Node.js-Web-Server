@@ -1,14 +1,11 @@
-var _PORT           = 8124;              // HTTP default is 80
-var _HTTP_BASE_PATH = "./";              // "." means the current directory
-var _INDEX_FILE     = "helloWorld.html"; // Index file from Base Path
+var http    = require('http');
+var path    = require('path');
+var fs      = require('fs');
+var util    = require('util');
+var url     = require('url');
 
-
-var http = require('http');
-var path = require('path');
-var fs   = require('fs');
-var util = require('util');
-
-
+exports.exec = function(_PORT, _HTTP_BASE_PATH, _INDEX_FILE)
+{
 http.createServer(function(request, response)
 {
 	var urlPath = path.normalize(_HTTP_BASE_PATH + url.parse(request.url).pathname);
@@ -117,5 +114,4 @@ http.createServer(function(request, response)
 		}
 	});
 }).listen(_PORT);
-
-console.log('Server running on port ' + _PORT);
+}
